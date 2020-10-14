@@ -1,0 +1,42 @@
+<html>
+
+<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="height=device-height, initial-scale=1">
+
+    <title>Weather by city</title>
+   <script>
+    
+    function my(){
+        
+        
+        var myv=document.getElementById("id1").value;
+        if(myv){
+        window.location.href="https://api.openweathermap.org/data/2.5/weather?q="+myv+"&mode=html&appid=032633c712e36a7bff6c2504909f336f";}
+        else{
+            alert("Please provide city name")
+        }
+    }
+    
+    </script> 
+    
+    </head>
+    
+    <body style="background-image: url(img/weather.png);background-size:100% 100%;text-align: center;margin-top: 50px">
+        
+    
+    
+        <label style="font-size: 30px;color: chocolate">CITY:</label><br><br><br>
+        <input type="text"  id="id1" placeholder="Enter the city" style="width: 300px;height: 45px;font-size: 25px" ><br><br>
+        <input type="button" onclick="my()" value="GetWeather" style="border: none;background-color: aqua;font-family: cursive;font-size: 30px;width: 200px;height: 50px"><br><br>
+        
+     
+       <a href="index.html"> <button style="border: none;background-color: aqua;font-family: cursive;font-size: 30px;width: 270px;height: 50px">Back to Home</button></a>
+        
+    
+    </body>
+    <b><p style="font-size: 20px;margin-top:50px;color: black;font-display: block;fon">A change in the weather is sufficient to recreate the world and ourselves.<br><br>-Marcel Proust</p></b>
+
+
+
+</html>

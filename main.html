@@ -1,0 +1,54 @@
+<html>
+   <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1, height=device-height">
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <title>Weather info</title>
+      <script>
+          function getpos(){
+              var w=navigator.geolocation.getCurrentPosition(onSuccess,onError);
+              function onSuccess(position){
+         var settings = {
+//           "async": true,
+//           "crossDomain": true,
+           "url": "https://api.openweathermap.org/data/2.5/weather?lat="+position.coords.latitude+"&lon="+position.coords.longitude+"&appid=032633c712e36a7bff6c2504909f336f",
+           "method": "GET"
+         };
+                  $.ajax(settings).done(function (response) {
+           console.log(response);
+
+           var content = response.wind.speed;
+           $("#windSpeed").append(content*3.6+"km/hr");
+                      
+              var currentWeather = response.weather[0].main;
+        $("#currentWeather").append(currentWeather);
+                var currenttemp=response.main.temp;
+            $("#currenttemp").append(currenttemp-273+" c");
+            
+                      var country=response.sys.country;
+                      $("#country").append(country);
+
+         });}
+              function onError(){
+                  
+                  alert("code: "+error.code  +"\n"+"message: "+error.message +"\n");
+              }
+         }
+     
+      </script>
+   </head>
+   <body style="background-image:url(img/cloudy-weather-hdwallpapershub.jpg);background-repeat:no-repeat;background-position:center;background-size:100% 100%;font-size: 17px">
+       <center>
+      <h1 style="text-align: center;background: linear-gradient(#004080,#80bfff)">Current weather condition</h1>
+           <button onclick="getpos()" style="font-size:30px"> Get info</button><br><b>
+           <div style="color: #a3c2c2">
+      <div id="windSpeed">Wind speed: </div><br>
+       <div id="currentWeather">Current weather conditions: </div><br>
+       <div id="currenttemp">Current temp: </div><br>
+       <div id="country">Country: </div></div><br>
+           <div style="color:#a3c2c2 ">Do you want to search weather by city?</div><br>
+           <a href="page5.html">   <button style="font-size:30px">Yes</button></a> 
+           <a href="index.html">         <button style="font-size:30px">No</button></a>
+           </b></center>
+   </body>
+</html>

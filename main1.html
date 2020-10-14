@@ -1,0 +1,47 @@
+<html>
+   <head>
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <title>Sample Page</title>
+      <script>
+          function getpos(){
+              var w=navigator.geolocation.getCurrentPosition(onSuccess,onError);
+              function onSuccess(position){
+         var settings = {
+//           "async": true,
+//           "crossDomain": true,
+           "url": "https://api.openweathermap.org/data/2.5/weather?lat="+position.coords.latitude+"&lon="+position.coords.longitude+"&appid=032633c712e36a7bff6c2504909f336f",
+           "method": "GET"
+         };
+                  $.ajax(settings).done(function (response) {
+           console.log(response);
+
+           var content = response.wind.speed;
+           $("#windSpeed").append(content*3.6+"km/hr");
+                      
+              var currentWeather = response.weather[0].main;
+        $("#currentWeather").append(currentWeather);
+                var currenttemp=response.main.temp;
+            $("#currenttemp").append(currenttemp-273+" c");
+            
+                      var country=response.sys.country;
+                      $("#country").append(country);
+
+         });}
+              function onError(){
+                  
+                  alert("code: "+error.code  +"\n"+"message: "+error.message +"\n");
+              }
+         }
+     
+      </script>
+   </head>
+   <body>
+      <h1 style="text-align: center;background:#bf80ff">current weather condition</h1>
+       <button onclick="getpos()">info</button>
+      <div id="windSpeed">Wind speed: </div>
+       <div id="currentWeather">Current weather conditions: </div>
+       <div id="currenttemp">Current temp:</div>
+       <div id="country">country:</div>
+   </body>
+</html>
